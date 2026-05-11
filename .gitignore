@@ -25,3 +25,7 @@ Thumbs.db
 packages/
 
 # Local secrets / dotnet user-secrets are tied to a guid — no need to ignore
+
+# Coverage artifacts
+TestResults/
+coverage-report/

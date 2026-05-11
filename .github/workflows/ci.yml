@@ -56,7 +56,7 @@ jobs:
           # Fail if line coverage < 90% on the unit-testable surface.
           # Override per-class via [ExcludeFromCodeCoverage] when the class
           # genuinely requires integration tests (e.g. raw DB drivers).
-          line_pct=$(grep -E '^Line coverage' coverage-report/Summary.txt | awk '{print $3}' | tr -d '%')
+          line_pct=$(awk '/^[[:space:]]*Line coverage:/ {gsub("%","",$NF); print $NF; exit}' coverage-report/Summary.txt)
           echo "Line coverage: ${line_pct}%"
           awk -v c="$line_pct" 'BEGIN { exit (c+0 >= 90) ? 0 : 1 }'
 
